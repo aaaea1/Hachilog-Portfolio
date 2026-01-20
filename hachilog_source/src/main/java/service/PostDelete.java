@@ -1,0 +1,31 @@
+package service;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.PostDao;
+import util.Command;
+
+public class PostDelete implements Command {
+
+	@Override
+	public void doCommand(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		int p_no = Integer.parseInt(request.getParameter("p_no"));
+		
+		PostDao dao = new PostDao();
+		
+		dao.postDelete(p_no);
+		
+		response.sendRedirect("/pst/list.do");
+		
+
+	}
+
+}
